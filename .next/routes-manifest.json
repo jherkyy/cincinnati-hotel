@@ -40,6 +40,12 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/api/admin/upload-hotel-info",
+      "regex": "^/api/admin/upload\\-hotel\\-info(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/upload\\-hotel\\-info(?:/)?$"
+    },
+    {
       "page": "/api/chat",
       "regex": "^/api/chat(?:/)?$",
       "routeKeys": {},
