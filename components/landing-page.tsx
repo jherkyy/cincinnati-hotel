@@ -47,7 +47,7 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
           </h1>
           <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6" />
           <p className="text-xl text-muted-foreground font-light">
-            Where Luxury Meets Innovation
+            Where I Luxury Meets Innovation
           </p>
         </div>
 

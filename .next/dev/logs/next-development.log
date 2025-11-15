@@ -1,10 +1,45 @@
-[00:00:01.191] Server  WARN     ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
-[00:00:01.486] Server  LOG      ✓ Ready in 981ms
-[00:00:04.567] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+[00:00:01.250] Server  WARN     ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
+[00:00:01.556] Server  LOG      ✓ Ready in 1020ms
+[00:00:05.190] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:05.053] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:05.712] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+[00:00:06.627] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:06.809] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:05.712] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:05.712] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:05.712] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763199546609}
+[00:00:06.913] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:06.913] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:06.913] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763217151767}
+[00:00:21.119] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: undefined
+[00:00:21.121] Server  ERROR   GUEST_CHAT_N8N_WEBHOOK_URL environment variable not set
+[00:04:41.609] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:04:41.952] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:43.217] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:04:43.217] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:04:43.217] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:04:43.217] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763217427782}
+[00:04:50.759] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: undefined
+[00:04:50.760] Server  ERROR   GUEST_CHAT_N8N_WEBHOOK_URL environment variable not set
+[00:06:21.288] Server  LOG        Reload env: .env.local
+[00:06:27.412] Server  LOG        Reload env: .env.local
+[00:07:02.419] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:07:02.910] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:03.643] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:07:03.761] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:07:03.761] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:07:03.761] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763217568607}
+[00:07:04.171] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:04.317] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:07:04.317] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:07:04.318] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:07:04.318] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763217569167}
+[00:07:06.137] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:06.282] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+[00:07:06.283] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:07:06.283] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:07:06.283] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763217571134}
+[00:07:16.557] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"

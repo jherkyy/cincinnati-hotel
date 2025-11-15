@@ -61,10 +61,18 @@ async function POST(request) {
                 status: 400
             });
         }
-        const N8N_WEBHOOK_URL = 'https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91' // TODO: Replace with your actual n8n webhook URL
-        ;
+        const GUEST_CHAT_N8N_WEBHOOK_URL = process.env.GUEST_CHAT_N8N_WEBHOOK_URL;
+        console.log('GUEST_CHAT_N8N_WEBHOOK_URL:', GUEST_CHAT_N8N_WEBHOOK_URL);
+        if (!GUEST_CHAT_N8N_WEBHOOK_URL) {
+            console.error('GUEST_CHAT_N8N_WEBHOOK_URL environment variable not set');
+            return __TURBOPACK__imported__module__$5b$project$5d2f$cincinnati$2d$hotel$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$3_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'Webhook URL not configured'
+            }, {
+                status: 500
+            });
+        }
         // Forward the message to n8n webhook
-        const response = await fetch(N8N_WEBHOOK_URL, {
+        const response = await fetch(GUEST_CHAT_N8N_WEBHOOK_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
