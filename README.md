@@ -28,3 +28,21 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## n8n Integration
+
+The customer chat feature integrates with n8n workflows via webhooks. To enable this functionality:
+
+1. Set up your n8n webhook URL as an environment variable:
+   ```
+   N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/your-webhook-id
+   ```
+
+2. The webhook should expect a JSON payload with:
+   - `userId`: User identifier (currently "guest-user" placeholder)
+   - `message`: The customer's message
+   - `timestamp`: ISO string timestamp
+
+3. The webhook should return a JSON response with the bot's reply. The response can be:
+   - A string directly: `"Your bot response here"`
+   - An object with a `message` property: `{"message": "Your bot response here"}`

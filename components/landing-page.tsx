@@ -2,9 +2,9 @@
 
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import HotelIcon from '@/components/icons/hotel-icon'
 import AdminIcon from '@/components/icons/admin-icon'
 import GuestIcon from '@/components/icons/guest-icon'
+import Image from 'next/image'
 
 interface LandingPageProps {
   onSelectMode: (mode: 'admin' | 'user') => void
@@ -12,11 +12,21 @@ interface LandingPageProps {
 
 export default function LandingPage({ onSelectMode }: LandingPageProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0a0a0a] flex flex-col items-center justify-between p-4">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-20"></div>
+    <div className="min-h-screen relative flex flex-col items-center justify-between p-4 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/background.jpg"
+          alt="The Cincinnatian Hotel"
+          fill
+          className="object-cover"
+          priority
+          quality={90}
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+        {/* Additional gradient overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
       </div>
 
       {/* Main Content */}
@@ -24,7 +34,13 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="flex justify-center mb-8">
-            <HotelIcon />
+            <Image
+              src="/hotel-logo.png"
+              alt="Cincinnati Hotel Logo"
+              width={150}
+              height={150}
+              priority
+            />
           </div>
           <h1 className="text-6xl md:text-7xl font-light tracking-wide mb-4 text-foreground">
             Cincinnati Hotel
@@ -39,7 +55,7 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
           {/* Admin Card */}
           <Card 
             onClick={() => onSelectMode('admin')}
-            className="group cursor-pointer bg-card border border-border/50 hover:border-primary/50 transition-all duration-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
+            className="group cursor-pointer bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
           >
             <div className="relative">
               <div className="mb-6 p-4 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 w-fit">
@@ -59,7 +75,7 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
           {/* Guest Card */}
           <Card 
             onClick={() => onSelectMode('user')}
-            className="group cursor-pointer bg-card border border-border/50 hover:border-primary/50 transition-all duration-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
+            className="group cursor-pointer bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
           >
             <div className="relative">
               <div className="mb-6 p-4 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 w-fit">
@@ -78,7 +94,7 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
         </div>
       </div>
 
-      <footer className="w-full border-t border-border/30 py-8 px-4 mt-auto">
+      <footer className="relative z-10 w-full border-t border-border/30 py-8 px-4 mt-auto">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-muted-foreground font-light text-sm uppercase tracking-widest">
             Experience Hospitality Redefined

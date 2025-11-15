@@ -28,6 +28,7 @@ export default function UserChat({ onBack }: UserChatProps) {
   ])
   const [input, setInput] = useState('')
   const [showContactForm, setShowContactForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
@@ -38,8 +39,8 @@ export default function UserChat({ onBack }: UserChatProps) {
     scrollToBottom()
   }, [messages])
 
-  const handleSendMessage = () => {
-    if (!input.trim()) return
+  const handleSendMessage = async () => {
+    if (!input.trim() || isLoading) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -50,18 +51,65 @@ export default function UserChat({ onBack }: UserChatProps) {
 
     setMessages((prev) => [...prev, userMessage])
     setInput('')
+    setIsLoading(true)
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage: Message = {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: 'guest-user', // Placeholder user ID
+          message: userMessage.content,
+          timestamp: userMessage.timestamp.toISOString(),
+        }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        let botContent: string
+
+        if (typeof data.response === 'string') {
+          botContent = data.response
+        } else if (data.response && typeof data.response === 'object') {
+          botContent = data.response.output || data.response.message || JSON.stringify(data.response)
+        } else {
+          botContent = "I'm sorry, I couldn't process your request. Please try again."
+        }
+
+        const botMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: 'bot',
+          content: botContent,
+          timestamp: new Date(),
+        }
+        setMessages((prev) => [...prev, botMessage])
+      } else {
+        // Handle error response
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: 'bot',
+          content: "I'm sorry, I'm having trouble connecting right now. Would you like to leave your contact details so our customer service team can get back to you?",
+          timestamp: new Date(),
+        }
+        setMessages((prev) => [...prev, errorMessage])
+        setShowContactForm(true)
+      }
+    } catch (error) {
+      console.error('Error sending message:', error)
+      const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'bot',
-        content: "I'm sorry, I don't have that information right now. Would you like to leave your contact details so our customer service team can get back to you with the answer?",
+        content: "I'm sorry, I'm having trouble connecting right now. Would you like to leave your contact details so our customer service team can get back to you?",
         timestamp: new Date(),
       }
-      setMessages((prev) => [...prev, botMessage])
+      setMessages((prev) => [...prev, errorMessage])
       setShowContactForm(true)
-    }, 800)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -104,6 +152,18 @@ export default function UserChat({ onBack }: UserChatProps) {
                 </div>
               </div>
             ))}
+
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light bg-card border border-border text-foreground rounded-bl-none">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce"></div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {showContactForm && (
               <Card className="border border-border bg-card p-6 mt-8">
@@ -149,14 +209,16 @@ export default function UserChat({ onBack }: UserChatProps) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              disabled={isLoading}
               placeholder="Ask me anything about the hotel..."
-              className="flex-1 bg-input border-border text-foreground placeholder:text-muted-foreground"
+              className="flex-1 bg-input border-border text-foreground placeholder:text-muted-foreground disabled:opacity-50"
             />
             <Button
               onClick={handleSendMessage}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6"
+              disabled={isLoading}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 disabled:opacity-50"
             >
-              <Send className="w-4 h-4" />
+              <Send className={`w-4 h-4 ${isLoading ? 'animate-pulse' : ''}`} />
             </Button>
           </div>
         </div>
