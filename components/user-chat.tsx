@@ -2,17 +2,19 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { ArrowLeft, Send, AlertCircle } from 'lucide-react'
+import { ArrowLeft, Send } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { generateUserId } from '@/lib/utils'
+import ContactForm from '@/components/contact-form'
 
 interface Message {
   id: string
   type: 'user' | 'bot'
   content: string
   timestamp: Date
+  showForm?: boolean
 }
 
 interface UserChatProps {
@@ -29,8 +31,8 @@ export default function UserChat({ onBack }: UserChatProps) {
     },
   ])
   const [input, setInput] = useState('')
-  const [showContactForm, setShowContactForm] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [userId, setUserId] = useState<string>('')
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
@@ -40,6 +42,54 @@ export default function UserChat({ onBack }: UserChatProps) {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
+  useEffect(() => {
+    setUserId(generateUserId())
+  }, [])
+
+  // Function to detect if response indicates fallback scenario
+  const isFallbackResponse = (response: any): boolean => {
+    const exactFallbackMessage = "I dont have prior information about the topic you are asking. I apologize for the inconvenience. To ensure you get the correct answer, please provide your Name, Phone Number, and Email, using the form below and a representative will contact you shortly."
+
+    if (typeof response === 'string') {
+      return response.trim() === exactFallbackMessage
+    }
+
+    if (response && typeof response === 'object') {
+      // Check for explicit fallback flag
+      if (response.fallback === true) return true
+
+      // Check in the output field if it exists
+      if (response.output && typeof response.output === 'string') {
+        return response.output.trim() === exactFallbackMessage
+      }
+    }
+
+    return false
+  }
+
+  // Function to handle contact form submission
+  const handleContactSubmit = async (data: { name: string; phone: string; email: string }) => {
+    try {
+      const response = await fetch('/api/submit-contact-info', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          ...data,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit contact information')
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error)
+      throw error
+    }
+  }
 
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return
@@ -62,7 +112,7 @@ export default function UserChat({ onBack }: UserChatProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userId: 'guest-user', // Placeholder user ID
+          userId: userId,
           message: userMessage.content,
           timestamp: userMessage.timestamp.toISOString(),
         }),
@@ -72,11 +122,21 @@ export default function UserChat({ onBack }: UserChatProps) {
 
       if (response.ok && data.success) {
         let botContent: string
+        let showForm = false
 
         if (typeof data.response === 'string') {
           botContent = data.response
+          showForm = isFallbackResponse(data.response)
         } else if (data.response && typeof data.response === 'object') {
-          botContent = data.response.output || data.response.message || JSON.stringify(data.response)
+          // Handle new n8n array format: [{ "output": { "output": "...", "responde_code": "200" } }]
+          if (Array.isArray(data.response) && data.response.length > 0 && data.response[0].output) {
+            botContent = data.response[0].output.output
+            showForm = isFallbackResponse(data.response[0].output)
+          } else {
+            // Fallback to previous format
+            botContent = data.response.output || data.response.message || JSON.stringify(data.response)
+            showForm = isFallbackResponse(data.response)
+          }
         } else {
           botContent = "I'm sorry, I couldn't process your request. Please try again."
         }
@@ -86,6 +146,7 @@ export default function UserChat({ onBack }: UserChatProps) {
           type: 'bot',
           content: botContent,
           timestamp: new Date(),
+          showForm,
         }
         setMessages((prev) => [...prev, botMessage])
       } else {
@@ -93,25 +154,42 @@ export default function UserChat({ onBack }: UserChatProps) {
         const errorMessage: Message = {
           id: (Date.now() + 1).toString(),
           type: 'bot',
-          content: "I'm sorry, I'm having trouble connecting right now. Would you like to leave your contact details so our customer service team can get back to you?",
+          content: "I'm sorry, I'm having trouble connecting right now. Please try again.",
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, errorMessage])
-        setShowContactForm(true)
       }
     } catch (error) {
       console.error('Error sending message:', error)
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'bot',
-        content: "I'm sorry, I'm having trouble connecting right now. Would you like to leave your contact details so our customer service team can get back to you?",
+        content: "I'm sorry, I'm having trouble connecting right now. Please try again.",
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, errorMessage])
-      setShowContactForm(true)
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const handleRefresh = () => {
+    setUserId(generateUserId())
+    setMessages([
+      {
+        id: '1',
+        type: 'bot',
+        content: 'Welcome to Cincinnati Hotel! I\'m your personal concierge. How can I help you today? Feel free to ask about our rooms, amenities, dining options, or anything else about your stay.',
+        timestamp: new Date(),
+      },
+    ])
+    setInput('')
+    setIsLoading(false)
+  }
+
+  const handleBack = () => {
+    setUserId(generateUserId())
+    onBack()
   }
 
   return (
@@ -131,16 +209,16 @@ export default function UserChat({ onBack }: UserChatProps) {
             <p className="text-sm text-muted-foreground font-light">Guest Concierge</p>
           </div>
           <div className="flex items-center gap-3">
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               className="flex items-center gap-2 hover:bg-primary/10 hover:text-primary"
-              // onClick={handleRefresh} // Functionality to be added later
+              onClick={handleRefresh}
             >
               Refresh
             </Button>
-            <Button 
-              variant="ghost" 
-              onClick={onBack}
+            <Button
+              variant="ghost"
+              onClick={handleBack}
               className="flex items-center gap-2 hover:bg-primary/10 hover:text-primary"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -156,21 +234,28 @@ export default function UserChat({ onBack }: UserChatProps) {
           <main className="flex-1 overflow-y-auto p-6 custom-scrollbar">
             <div className="space-y-6">
               {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
+                <div key={message.id}>
                   <div
-                    className={`max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light ${
-                      message.type === 'user'
-                        ? 'bg-primary text-primary-foreground rounded-br-none'
-                        : 'bg-card border border-border text-foreground rounded-bl-none'
-                    }`}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <div className="markdown-content">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
+                    <div
+                      className={`max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light ${
+                        message.type === 'user'
+                          ? 'bg-primary text-primary-foreground rounded-br-none'
+                          : 'bg-card border border-border text-foreground rounded-bl-none'
+                      }`}
+                    >
+                      <div className="markdown-content">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>
+                      </div>
                     </div>
                   </div>
+
+                  {message.showForm && (
+                    <div className="flex justify-start mt-4">
+                      <ContactForm onSubmit={handleContactSubmit} />
+                    </div>
+                  )}
                 </div>
               ))}
 
@@ -184,36 +269,6 @@ export default function UserChat({ onBack }: UserChatProps) {
                     </div>
                   </div>
                 </div>
-              )}
-              {showContactForm && (
-                <Card className="border border-border bg-card p-6 mt-8">
-                  <div className="flex items-start gap-3 mb-4">
-                    <AlertCircle className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-light text-foreground mb-2">Leave Your Contact Details</h3>
-                      <p className="text-sm text-muted-foreground font-light">Our team will get back to you with the information you need.</p>
-                    </div>
-                  </div>
-                  <form className="space-y-3">
-                    <Input 
-                      placeholder="Your Name" 
-                      className="bg-input border-border text-foreground placeholder:text-muted-foreground"
-                    />
-                    <Input 
-                      placeholder="Your Email" 
-                      type="email"
-                      className="bg-input border-border text-foreground placeholder:text-muted-foreground"
-                    />
-                    <Input 
-                      placeholder="Your Phone" 
-                      type="tel"
-                      className="bg-input border-border text-foreground placeholder:text-muted-foreground"
-                    />
-                    <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                      Submit Information
-                    </Button>
-                  </form>
-                </Card>
               )}
 
               <div ref={messagesEndRef} />

@@ -1,0 +1,3 @@
+{
+  "/api/fallback-webhook/route": "app/api/fallback-webhook/route.js"
+}

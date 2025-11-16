@@ -1,47 +1,13 @@
-[00:00:01.532] Server  WARN     ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
-[00:00:01.853] Server  LOG      ✓ Ready in 1182ms
-[00:00:04.935] Server  LOG      ○ Compiling / ...
-[00:00:07.808] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+[00:00:01.568] Server  WARN     ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 5.0.2
+[00:00:01.843] Server  LOG      ✓ Ready in 1007ms
+[00:00:04.922] Server  LOG      ○ Compiling / ...
+[00:00:11.299] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:08.199] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:09.517] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
+[00:00:11.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:12.009] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
 Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:00:09.517] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:09.517] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:09.517] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763225512939}
-[00:00:33.941] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:01:05.817] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:01:34.550] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:07:11.382] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:17:01.417] Server  LOG      ✓ Compiled in 166ms
-[00:17:20.296] Server  LOG      ✓ Compiled in 138ms
-[00:24:29.047] Server  LOG      ✓ Compiled in 196ms
-[00:26:00.986] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:26:01.407] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:26:21.075] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:26:21.210] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:26:23.996] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:26:24.118] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:26:25.852] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:26:25.975] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:29:36.399] Server  LOG      ✓ Compiled in 130ms
-[00:29:49.129] Server  LOG      ✓ Compiled in 285ms
-[00:31:30.345] Server  WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:31:30.686] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:31:30.945] Browser WARN    Image with src "/background.jpg" is using quality "90" which is not configured in images.qualities [75]. Please update your config to [75, 90].
-Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
-[00:31:30.945] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:31:30.945] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:31:30.945] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763227394490}
-[00:31:37.861] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:31:38.197] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:31:49.799] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:31:49.958] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:32:12.481] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:32:55.070] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:34:25.695] Server  LOG      ✓ Compiled in 238ms
-[00:34:43.383] Server  LOG      ✓ Compiled in 287ms
-[00:35:27.029] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
-[00:35:27.387] Server  ERROR   n8n webhook error: 404 "Not Found"
-[00:35:34.660] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook-test/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
+[00:00:12.116] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:12.116] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:12.116] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1763317386999}
+[00:00:17.631] Server  LOG     GUEST_CHAT_N8N_WEBHOOK_URL: "https://n8n-jheryk.onrender.com/webhook/6e95b3c3-c0b3-4b0a-a433-2c2d13b0cc91"
+[00:00:18.340] Server  ERROR   n8n webhook error: 500 "Internal Server Error"
