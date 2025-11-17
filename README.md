@@ -6,7 +6,7 @@ This project delivers a production-ready, RAG-powered AI Assistant for hotel gue
 
 The completed system is fully deployed and accessible at the following URL:
 
-cincinnati-hotel.vercel.app
+https://cincinnati-hotel.vercel.app/
 
 🏗️ Architecture and Technology Stack
 
