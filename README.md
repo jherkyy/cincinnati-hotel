@@ -1,65 +1,16 @@
-# Elegant hotel website
+🏨 The Cincinnati Hotel AI Concierge & Analytics PlatformThis project delivers a production-ready, RAG-powered AI Assistant for hotel guests, coupled with a real-time analytics dashboard for administrators. The system is designed to provide instantaneous, accurate answers based strictly on an internal knowledge base, and includes robust fallback and error handling workflows using n8n.🌐 Production DeploymentThe completed system is fully deployed and accessible at the following URL:cincinnati-hotel.vercel.app🏗️ Architecture and Technology StackThe platform employs a modern microservices architecture orchestrated by n8n, ensuring separation of concerns, scalability, and flexibility.ComponentTechnologyRoleFrontend (UI)React (TypeScript) & Tailwind CSSAdmin dashboard, real-time chat interface, and data visualization.Backend / OrchestrationNode.js & n8n (Automation)Manages all API calls, RAG logic, external webhooks, and complex workflow steps like fallback emails and error handling.DatabaseSupabase (PostgreSQL)Stores real-time chat analytics, user data (for fallback), and conversation history for the dashboard.AI AgentsGemini 2.5 FlashPowers the core RAG Chatbot, Conversation Analysis Agent, and other LLM tasks.Developmentv0.dev (Vercel) & Cursor AI (Grok-1)Used for initial framework generation and iterative code building/refinement.⚙️ Key FeaturesRAG-Powered Chatbot: Answers guest questions about the hotel (rooms, amenities, policies) using only the single source of truth: the uploaded knowledge base (PDF/Markdown).Admin Knowledge Base Management: Admins can upload and update the hotel information, which immediately becomes the new knowledge base for the chatbot.Real-time Analytics: Chat statistics (e.g., sessions, categories of inquiry) are updated live on the Admin Dashboard using Supabase Realtime.Fallback Workflow: If the AI cannot answer from the KB, it triggers a custom n8n webhook to capture guest contact details and send an email alert to the Hotel Representative.Robust Error Handling: A dedicated n8n error handling workflow sends an immediate technical alert to the administrator upon any system failure (e.g., API timeout, database connection error).🚀 Getting StartedPrerequisitesYou will need the following accounts and credentials:Supabase project URL and Publishable Key.n8n instance (self-hosted or cloud) for the automation workflows.Gemini API Key (for your n8n workflows).1. Environment VariablesCreate a .env.local file in your project root and populate it with the following required variables:# === SUPABASE DATABASE CONFIGURATION (Realtime Analytics) ===
+NEXT_PUBLIC_SUPABASE_URL="[Your Supabase Project URL]"
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY="[Your Supabase Public/Anon Key]"
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+# === N8N WEBHOOKS (For Orchestration) ===
+# This webhook receives guest chat messages, performs RAG, and returns the response.
+GUEST_CHAT_N8N_WEBHOOK_URL="[n8n Webhook URL for Chat Endpoint]"
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/albolerasjheryk24-1559s-projects/v0-elegant-hotel-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/dLNJjgYo6Jf)
+# This webhook receives the uploaded Markdown/PDF content for KB update.
+ADMIN_UPLOAD_N8N_WEBHOOK_URL="[n8n Webhook URL for Admin Upload Endpoint]"
 
-## Overview
-
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
-
-## Deployment
-
-Your project is live at:
-
-**[https://vercel.com/albolerasjheryk24-1559s-projects/v0-elegant-hotel-website](https://vercel.com/albolerasjheryk24-1559s-projects/v0-elegant-hotel-website)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/dLNJjgYo6Jf](https://v0.app/chat/dLNJjgYo6Jf)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
-
-## n8n Integration
-
-### Customer Chat
-The customer chat feature integrates with n8n workflows via webhooks. To enable this functionality:
-
-1. Set up your n8n webhook URL as an environment variable:
-   ```
-   N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/chat-webhook-id
-   ```
-
-2. The webhook should expect a JSON payload with:
-   - `userId`: User identifier (currently "guest-user" placeholder)
-   - `message`: The customer's message
-   - `timestamp`: ISO string timestamp
-
-3. The webhook should return a JSON response with the bot's reply. The response can be:
-   - A string directly: `"Your bot response here"`
-   - An object with a `message` property: `{"message": "Your bot response here"}`
-
-### Hotel Information Upload
-The admin dashboard allows uploading PDF files containing hotel information to serve as knowledge base for the AI agent:
-
-1. Set up a separate n8n webhook URL for hotel information uploads:
-   ```
-   ADMIN_UPLOAD_N8N_WEBHOOK_URL=https://your-n8n-instance.com/webhook/upload-hotel-info
-   ```
-
-2. The webhook receives a multipart/form-data payload with:
-   - `file`: The PDF file
-   - `fileName`: Original filename
-   - `fileSize`: File size in bytes
-   - `uploadedAt`: Upload timestamp (ISO string)
-
-3. The webhook should process the PDF content and update the knowledge base for the AI agent.
+# This webhook is triggered when the AI uses the FALLBACK_TRIGGER.
+FALLBACK_N8N_WEBHOOK_URL="[n8n Webhook URL for Fallback Email System]"
+2. Run the ApplicationInstall dependencies and start the development server:npm install
+npm run dev
+The application will be accessible at http://localhost:3000.🔄 Data Flow and Workflow LogicA. Guest Chat Flow (RAG & Realtime Analytics)Guest Input: A user sends a message via the React/TS Frontend.Trigger n8n: The Frontend makes a POST request to GUEST_CHAT_N8N_WEBHOOK_URL containing the guest's message and conversation history.RAG/LLM: The n8n workflow uses the Gemini 2.5 Flash model to perform Retrieval Augmented Generation (RAG) against the current hotel Knowledge Base.Decision Point:Success: If an answer is found, the response is sent back to the Frontend. The conversation is logged to Supabase.Fallback: If the response contains the FALLBACK_TRIGGER, n8n triggers the FALLBACK_N8N_WEBHOOK_URL.Analytics Update: After the chat session, the data is pushed to Supabase, triggering a Realtime subscription on the Admin Dashboard to update metrics immediately.B. Fallback Escalation WorkflowThis critical workflow ensures no guest inquiry is lost:Trigger: The main chat flow triggers FALLBACK_N8N_WEBHOOK_URL.Analysis Agent: A secondary Gemini 2.5 Flash agent processes the full conversation history to extract category, summary_for_representative, and unanswered_question.Notification: An email is sent to the hotel representative (Idan) for immediate follow-up.C. Error Handling WorkflowThis robust technical monitoring loop is configured globally within n8n:Trigger: Any unexpected error in the n8n execution (e.g., API key failure, connection error).Data Capture: The n8n error node captures the failed node name, workflow name, and full error message.Technical Alert: An email is sent to the technical administrator with clear details of the failure.💻 Tech & Methodology NotesModel Selection: Gemini 2.5 Flash was chosen for its high performance, low latency, and advanced reasoning capabilities, making it ideal for the critical RAG and structured data extraction tasks.Cursor AI/Grok: The project leveraged Cursor AI for rapid development and context-aware coding, significantly accelerating the build process.Realtime: The use of Supabase Realtime on the Admin Dashboard provides instant feedback on chatbot activity, fulfilling the requirement for real-time analytics.
