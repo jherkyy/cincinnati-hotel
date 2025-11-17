@@ -84,34 +84,23 @@ export default function ChatAnalyticsChart() {
         .map(([topic, count]) => ({ topic, count }))
         .sort((a, b) => b.count - a.count); // Sort by count descending
 
-      const questionsPerTopicWithColors = sortedQuestionsPerTopic.map((item, index, arr) => {
-        let fill = ORANGE_SHADES[ORANGE_SHADES.length - 1]; // Default to darkest
-
-        // Find previous item with same count to apply same color
-        const prevSameCount = arr.slice(0, index).reverse().find(prevItem => prevItem.count === item.count);
-        if (prevSameCount && prevSameCount.fill) {
-          fill = prevSameCount.fill;
-        } else {
-          // Assign a new shade if count is different from previous or no previous item
-          const uniqueCountsBefore = new Set(arr.slice(0, index).map(i => i.count)).size;
-          fill = ORANGE_SHADES[Math.min(uniqueCountsBefore, ORANGE_SHADES.length - 1)];
-        }
-
-        return { ...item, fill };
-      });
+      const questionsPerTopicWithColors = sortedQuestionsPerTopic.map((item) => ({
+        ...item,
+        fill: 'var(--primary)', // Set a single color for all bars
+      }));
 
       // Dynamically create chartConfig for shadcn/ui chart
       const dynamicChartConfig: ChartConfig = {
         count: {
           label: 'Questions',
-          color: ORANGE_SHADES[2], // Mid-range orange for default
+          color: 'var(--primary)', // Set a single color for default
         },
       };
 
       questionsPerTopicWithColors.forEach((item) => {
         dynamicChartConfig[item.topic.toLowerCase().replace(/\s/g, '-')] = {
           label: item.topic,
-          color: item.fill || ORANGE_SHADES[2], // Use assigned fill color
+          color: 'var(--primary)', // Use assigned fill color
         };
       });
 
@@ -149,7 +138,7 @@ export default function ChatAnalyticsChart() {
 
   if (loading) {
     return (
-      <Card className="border border-border bg-card p-8">
+      <Card className="border border-border/50 bg-black/40 backdrop-blur-md p-8">
         <div className="flex items-center justify-center h-64">
           <div className="text-muted-foreground">Loading chat analytics...</div>
         </div>
@@ -159,7 +148,7 @@ export default function ChatAnalyticsChart() {
 
   if (error) {
     return (
-      <Card className="border border-border bg-card p-8">
+      <Card className="border border-border/50 bg-black/40 backdrop-blur-md p-8">
         <div className="flex items-center justify-center h-64">
           <div className="text-red-400">{error}</div>
         </div>
@@ -170,13 +159,13 @@ export default function ChatAnalyticsChart() {
   return (
     <div className="space-y-8">
       {/* Total Sessions Card */}
-      <Card className="border border-border bg-card p-8">
+      <Card className="border border-border/50 bg-black/40 backdrop-blur-md p-8">
         <p className="text-muted-foreground font-light mb-2">Total Chat Sessions</p>
         <p className="text-5xl font-light text-primary">{data.totalSessions}</p>
       </Card>
 
       {/* Bar Chart - Questions per Topic (shadcn/ui style) */}
-      <Card className="border border-border bg-card p-6">
+      <Card className="border border-border/50 bg-black/40 backdrop-blur-md p-6">
         <CardHeader className="p-0 pb-6">
           <CardTitle className="text-xl font-light text-foreground">Questions Per Topic</CardTitle>
           <CardDescription>Number of chat sessions grouped by topic</CardDescription>

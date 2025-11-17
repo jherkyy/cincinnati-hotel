@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ArrowLeft, Upload, BarChart3 } from 'lucide-react'
 import { useRef } from 'react'
+import Image from 'next/image'
 import ChatAnalyticsChart from '@/components/ChatAnalyticsChart'
 
 interface AdminDashboardProps {
@@ -53,12 +54,30 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0a0a0a]">
-      {/* Header */}
-      <header className="border-b border-border/50 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
+    <div className="min-h-screen relative">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/background.jpg"
+          alt="The Cincinnatian Hotel"
+          fill
+          className="object-cover"
+          priority
+          quality={90}
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+        {/* Additional gradient overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="border-b border-border/50 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-light text-foreground">Admin Dashboard</h1>
+            <h1 className="text-2xl sm:text-3xl font-light text-foreground">Admin Dashboard</h1>
             <p className="text-muted-foreground font-light">Cincinnati Hotel</p>
           </div>
           <Button 
@@ -73,10 +92,10 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Upload Section */}
-        <Card className="border border-border bg-card mb-12 overflow-hidden">
-          <div className="p-8">
+        <Card className="border border-border/50 bg-black/40 backdrop-blur-md mb-8 sm:mb-12 overflow-hidden">
+          <div className="p-6 sm:p-8">
             <div className="flex items-center gap-3 mb-6">
               <Upload className="w-6 h-6 text-primary" />
               <h2 className="text-2xl font-light text-foreground">Upload Hotel Information</h2>
@@ -97,7 +116,7 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
             />
             <label
               htmlFor="file-upload"
-              className="group block border-2 border-dashed border-border/50 rounded-lg p-12 text-center hover:border-primary/50 transition-colors duration-300 cursor-pointer bg-card/50 hover:bg-primary/5 mx-auto max-w-lg"
+              className="group block border-2 border-dashed border-border/50 rounded-lg p-8 sm:p-12 text-center hover:border-primary/50 transition-colors duration-300 cursor-pointer bg-card/50 hover:bg-primary/5 mx-auto max-w-lg"
               onClick={() => fileInputRef.current?.click()}
             >
               <div className="flex justify-center mb-4">
@@ -111,7 +130,7 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
             </label>
 
             {selectedFile && (
-              <div className="mt-6 flex items-center gap-4">
+              <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
                 <Button
                   onClick={handleUpload}
                   disabled={isUploading}
@@ -166,6 +185,7 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
           <ChatAnalyticsChart />
         </div>
       </main>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import LandingPage from '@/components/landing-page'
@@ -9,14 +9,41 @@ import UserChat from '@/components/user-chat'
 
 export default function Home() {
   const [mode, setMode] = useState<null | 'admin' | 'user'>(null)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
-  if (mode === 'admin') {
-    return <AdminDashboard onBack={() => setMode(null)} />
+  const handleModeChange = (newMode: 'admin' | 'user' | null) => {
+    if (newMode !== mode) {
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setMode(newMode)
+        setIsTransitioning(false)
+      }, 150)
+    }
   }
 
-  if (mode === 'user') {
-    return <UserChat onBack={() => setMode(null)} />
+  const currentComponent = () => {
+    if (mode === 'admin') {
+      return <AdminDashboard onBack={() => handleModeChange(null)} />
+    }
+
+    if (mode === 'user') {
+      return <UserChat onBack={() => handleModeChange(null)} />
+    }
+
+    return <LandingPage onSelectMode={handleModeChange} />
   }
 
-  return <LandingPage onSelectMode={setMode} />
+  return (
+    <div className="relative w-full h-screen">
+      <div
+        className={`absolute inset-0 transition-opacity duration-200 ease-in-out ${
+          isTransitioning
+            ? 'opacity-0'
+            : 'opacity-100'
+        }`}
+      >
+        {currentComponent()}
+      </div>
+    </div>
+  )
 }

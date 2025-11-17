@@ -203,7 +203,7 @@ export default function UserChat({ onBack }: UserChatProps) {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 backdrop-blur-sm bg-background/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-light text-foreground">Cincinnati Hotel</h1>
             <p className="text-sm text-muted-foreground font-light">Guest Concierge</p>
@@ -229,9 +229,9 @@ export default function UserChat({ onBack }: UserChatProps) {
       </header>
 
       {/* Main Chat Area */}
-      <div className="flex flex-col flex-1 max-w-4xl mx-auto w-full h-[calc(100vh-theme(spacing.32))] mt-8 mb-8 relative z-10">
-        <div className="bg-background/90 border border-border rounded-lg shadow-xl flex flex-col flex-1 overflow-hidden h-full">
-          <main className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+      <div className="flex flex-col max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto w-full h-[75vh] sm:h-[90vh] md:h-[800px] mt-30 sm:mt-30 md:mt-30 mb-20 sm:mb-24 md:mb-12 relative z-10">
+        <div className="bg-black/30 backdrop-blur-md border border-border/40 rounded-lg shadow-xl flex flex-col flex-1 overflow-hidden h-full">
+          <main className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
             <div className="space-y-6">
               {messages.map((message) => (
                 <div key={message.id}>
@@ -239,9 +239,9 @@ export default function UserChat({ onBack }: UserChatProps) {
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light ${
+                      className={`max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light chat-message ${
                         message.type === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-br-none'
+                          ? 'bg-primary/10 border border-border text-foreground rounded-br-none'
                           : 'bg-card border border-border text-foreground rounded-bl-none'
                       }`}
                     >
@@ -261,7 +261,7 @@ export default function UserChat({ onBack }: UserChatProps) {
 
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light bg-card border border-border text-foreground rounded-bl-none">
+                  <div className="max-w-md lg:max-w-xl px-6 py-4 rounded-lg font-light bg-card border border-border text-foreground rounded-bl-none chat-message">
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:-0.3s]"></div>
                       <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:-0.15s]"></div>
@@ -276,8 +276,8 @@ export default function UserChat({ onBack }: UserChatProps) {
           </main>
 
           {/* Floating Input Area */}
-          <footer className="p-4 bg-transparent">
-            <div className="max-w-2xl mx-auto bg-card border border-border rounded-full shadow-lg flex items-center gap-3 px-4 py-2">
+          <footer className="p-3 sm:p-4 bg-transparent">
+            <div className="max-w-xs sm:max-w-sm md:max-w-lg mx-auto bg-card border border-border rounded-full shadow-lg flex items-center gap-3 px-4 py-2">
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

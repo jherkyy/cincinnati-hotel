@@ -50,6 +50,12 @@
       "regex": "^/api/chat(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/chat(?:/)?$"
+    },
+    {
+      "page": "/api/submit-contact-info",
+      "regex": "^/api/submit\\-contact\\-info(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/submit\\-contact\\-info(?:/)?$"
     }
   ],
   "dataRoutes": [],

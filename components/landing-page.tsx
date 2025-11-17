@@ -32,61 +32,62 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
       {/* Main Content */}
       <div className="relative z-10 w-full max-w-6xl flex-1 flex flex-col items-center justify-center">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-8">
+        <div className="text-center mb-12 sm:mb-16 px-4">
+          <div className="flex justify-center mb-6 sm:mb-8">
             <Image
               src="/hotel-logo.png"
               alt="Cincinnati Hotel Logo"
-              width={150}
-              height={150}
+              width={120}
+              height={120}
+              className="sm:w-[150px] sm:h-[150px]"
               priority
             />
           </div>
-          <h1 className="text-6xl md:text-7xl font-light tracking-wide mb-4 text-foreground">
+          <h1 className="title-main text-4xl sm:text-6xl md:text-7xl font-light tracking-wide mb-4 text-foreground">
             Cincinnati Hotel
           </h1>
-          <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6" />
-          <p className="text-xl text-muted-foreground font-light">
-            Where I Luxury Meets Innovation
+          <div className="w-20 sm:w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6" />
+          <p className="text-lg sm:text-xl text-muted-foreground font-light">
+            Where Luxury Meets Innovation
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl w-full px-4">
           {/* Admin Card */}
-          <Card 
+          <Card
             onClick={() => onSelectMode('admin')}
-            className="group cursor-pointer bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
+            className="group cursor-pointer bg-black/40 backdrop-blur-md border border-border/50 hover:border-border/60 hover:bg-black/45 transition-all duration-500 p-6 sm:p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
           >
             <div className="relative">
-              <div className="mb-6 p-4 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 w-fit">
-                <AdminIcon />
+              <div className="mb-6 p-4 bg-primary/5 rounded-lg group-hover:bg-primary/20 transition-all duration-300 w-fit">
+                <Image src="/admin-icon.png" alt="administrator-male" width={40} height={40} />
               </div>
               <h2 className="text-2xl font-light mb-3 text-foreground">Admin</h2>
               <p className="text-muted-foreground font-light mb-6 flex-grow">
                 Manage hotel information and view analytics dashboard
               </p>
               <button className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all duration-300 font-light">
-                <span>Enter Dashboard</span>
+                <span className="font-bold">Enter Dashboard</span>
                 <span className="text-lg">→</span>
               </button>
             </div>
           </Card>
 
           {/* Guest Card */}
-          <Card 
+          <Card
             onClick={() => onSelectMode('user')}
-            className="group cursor-pointer bg-card/90 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
+            className="group cursor-pointer bg-black/40 backdrop-blur-md border border-border/50 hover:border-border/60 hover:bg-black/45 transition-all duration-500 p-6 sm:p-8 flex flex-col hover:shadow-2xl hover:shadow-primary/20 relative"
           >
             <div className="relative">
               <div className="mb-6 p-4 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-all duration-300 w-fit">
-                <GuestIcon />
+                <Image src="/guest-icon.png" alt="guest-male" width={40} height={40} />
               </div>
               <h2 className="text-2xl font-light mb-3 text-foreground">Guest</h2>
               <p className="text-muted-foreground font-light mb-6 flex-grow">
                 Chat with our AI concierge for assistance and information
               </p>
               <button className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all duration-300 font-light">
-                <span>Start Chat</span>
+                <span className="font-bold">Start Chat</span>
                 <span className="text-lg">→</span>
               </button>
             </div>
@@ -94,7 +95,7 @@ export default function LandingPage({ onSelectMode }: LandingPageProps) {
         </div>
       </div>
 
-      <footer className="relative z-10 w-full border-t border-border/30 py-8 px-4 mt-auto">
+      <footer className="relative z-10 w-full border-t border-border/30 py-6 sm:py-8 px-4 mt-auto">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-muted-foreground font-light text-sm uppercase tracking-widest">
             Experience Hospitality Redefined

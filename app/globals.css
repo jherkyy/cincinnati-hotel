@@ -150,10 +150,27 @@
 
 /* Add elegant typography and smooth transitions for luxury feel */
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-light;
+  /* Main hotel title uses Playfair Display */
+  h1.title-main {
+    font-family: var(--font-playfair-display), serif;
+    @apply tracking-tight font-normal;
   }
-  
+
+  /* Other headings use Montserrat */
+  h1:not(.title-main), h2, h3, h4, h5, h6 {
+    font-family: var(--font-montserrat), sans-serif;
+    @apply tracking-tight font-medium;
+  }
+
+  body {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+
+  /* Chat text uses Montserrat for consistency */
+  .chat-message {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+
   a, button {
     @apply transition-all duration-300 ease-out;
   }
