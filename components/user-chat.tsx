@@ -192,25 +192,25 @@ export default function UserChat({ onBack }: UserChatProps) {
         backdropFilter: 'blur(40px) saturate(180%)',
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
         borderBottom: '0.5px solid rgba(255,255,255,0.08)',
-        padding: '16px 0 14px',
+        padding: '20px 0 18px',
       }}>
-        <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px' }}>
+        <div style={{ maxWidth: 780, margin: '0 auto', padding: '0 32px' }}>
           {/* Top row: back + reset */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <button onClick={handleBack} style={{
               background: 'none', border: 'none', cursor: 'pointer',
-              color: 'var(--accent)', fontSize: '17px', fontFamily: SF,
+              color: 'var(--accent)', fontSize: '19px', fontFamily: SF,
               fontWeight: 400, padding: '4px 0',
-              display: 'flex', alignItems: 'center', gap: 3,
+              display: 'flex', alignItems: 'center', gap: 4,
             }}>
-              <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+              <svg width="13" height="22" viewBox="0 0 12 20" fill="none">
                 <path d="M10 2L2 10L10 18" stroke="var(--accent)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               Lobby
             </button>
             <button onClick={handleReset} style={{
               background: 'none', border: 'none', cursor: 'pointer',
-              color: 'var(--accent)', fontSize: '13px', fontFamily: SF,
+              color: 'var(--accent)', fontSize: '15px', fontFamily: SF,
               fontWeight: 400, letterSpacing: '0.01em',
             }}>
               Refresh
@@ -221,30 +221,30 @@ export default function UserChat({ onBack }: UserChatProps) {
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
             <div>
               <div style={{
-                fontSize: '26px', color: 'var(--text)',
+                fontSize: '32px', color: 'var(--text)',
                 fontFamily: '"Times New Roman", Times, serif',
                 fontWeight: 700, lineHeight: 1, letterSpacing: '-0.5px',
               }}>Concierge</div>
               <div style={{
-                fontSize: '11px', color: '#34c759', marginTop: 5,
+                fontSize: '13px', color: '#34c759', marginTop: 6,
                 fontFamily: SF, fontWeight: 400,
-                display: 'flex', alignItems: 'center', gap: 5, letterSpacing: '0.04em',
+                display: 'flex', alignItems: 'center', gap: 6, letterSpacing: '0.04em',
               }}>
                 <span className="pulse-gold" style={{
-                  width: 5, height: 5, borderRadius: '50%',
+                  width: 6, height: 6, borderRadius: '50%',
                   background: '#34c759', display: 'inline-block',
                 }} />
                 Available now
               </div>
             </div>
             <div style={{
-              width: 34, height: 34, borderRadius: '50%',
+              width: 42, height: 42, borderRadius: '50%',
               background: 'var(--accent-dim)',
               border: '0.5px solid var(--accent)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               overflow: 'hidden',
             }}>
-              <Image src="/hotel-logo.png" width={34} height={34} alt="Hotel" style={{ objectFit: 'cover' }} />
+              <Image src="/hotel-logo.png" width={42} height={42} alt="Hotel" style={{ objectFit: 'cover' }} />
             </div>
           </div>
         </div>
@@ -252,35 +252,35 @@ export default function UserChat({ onBack }: UserChatProps) {
 
       {/* Messages area */}
       <div ref={scrollRef} style={{
-        flex: 1, overflow: 'auto', padding: '20px 0 12px',
+        flex: 1, overflow: 'auto', padding: '28px 0 16px',
         position: 'relative', zIndex: 1,
       }}>
-        <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px' }}>
+        <div style={{ maxWidth: 780, margin: '0 auto', padding: '0 32px' }}>
           {messages.map((msg) => {
             const isUser = msg.type === 'user'
             return (
               <div key={msg.id} className="msg-anim" style={{
                 display: 'flex',
                 justifyContent: isUser ? 'flex-end' : 'flex-start',
-                marginBottom: 8, alignItems: 'flex-end', gap: 8,
+                marginBottom: 12, alignItems: 'flex-end', gap: 10,
               }}>
                 {!isUser && (
                   <div style={{
-                    width: 26, height: 26, borderRadius: '50%',
+                    width: 32, height: 32, borderRadius: '50%',
                     background: 'var(--surface2)',
                     border: '0.5px solid rgba(255,255,255,0.1)',
                     flexShrink: 0, marginBottom: 2, overflow: 'hidden',
                   }}>
-                    <Image src="/hotel-logo.png" width={26} height={26} alt="Hotel" style={{ objectFit: 'cover' }} />
+                    <Image src="/hotel-logo.png" width={32} height={32} alt="Hotel" style={{ objectFit: 'cover' }} />
                   </div>
                 )}
                 <div style={{
-                  maxWidth: '72%', padding: '9px 14px',
+                  maxWidth: '74%', padding: '12px 18px',
                   background: 'transparent',
-                  borderRadius: isUser ? '14px 14px 3px 14px' : '3px 14px 14px 14px',
+                  borderRadius: isUser ? '18px 18px 4px 18px' : '4px 18px 18px 18px',
                   color: isUser ? 'var(--accent)' : 'var(--text)',
-                  fontSize: '14px', lineHeight: 1.6,
-                  fontFamily: 'var(--font-dm-sans), "DM Sans", sans-serif',
+                  fontSize: '16px', lineHeight: 1.65,
+                  fontFamily: 'var(--font-outfit), "Outfit", sans-serif',
                   fontWeight: 400,
                   border: isUser
                     ? '1px solid var(--accent)'
@@ -295,24 +295,24 @@ export default function UserChat({ onBack }: UserChatProps) {
           })}
 
           {isLoading && (
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, marginBottom: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 10, marginBottom: 12 }}>
               <div style={{
-                width: 26, height: 26, borderRadius: '50%',
+                width: 32, height: 32, borderRadius: '50%',
                 background: 'var(--surface2)',
                 border: '0.5px solid rgba(255,255,255,0.1)',
                 flexShrink: 0, overflow: 'hidden',
               }}>
-                <Image src="/hotel-logo.png" width={26} height={26} alt="Hotel" style={{ objectFit: 'cover' }} />
+                <Image src="/hotel-logo.png" width={32} height={32} alt="Hotel" style={{ objectFit: 'cover' }} />
               </div>
               <div style={{
-                padding: '10px 14px', background: 'transparent',
-                borderRadius: '3px 14px 14px 14px',
-                display: 'flex', gap: 5, alignItems: 'center',
+                padding: '13px 18px', background: 'transparent',
+                borderRadius: '4px 18px 18px 18px',
+                display: 'flex', gap: 6, alignItems: 'center',
                 border: '0.5px solid rgba(255,255,255,0.12)',
               }}>
-                <div className="dot1" style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--text-dim)' }} />
-                <div className="dot2" style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--text-dim)' }} />
-                <div className="dot3" style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--text-dim)' }} />
+                <div className="dot1" style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--text-dim)' }} />
+                <div className="dot2" style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--text-dim)' }} />
+                <div className="dot3" style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--text-dim)' }} />
               </div>
             </div>
           )}
@@ -321,14 +321,14 @@ export default function UserChat({ onBack }: UserChatProps) {
 
       {/* Suggestion chips */}
       {messages.length <= 2 && !isLoading && (
-        <div style={{ padding: '0 0 10px', zIndex: 2, position: 'relative' }}>
+        <div style={{ padding: '0 0 12px', zIndex: 2, position: 'relative' }}>
           <div style={{
-            maxWidth: 640, margin: '0 auto', padding: '0 24px',
-            display: 'flex', gap: 8, flexWrap: 'wrap',
+            maxWidth: 780, margin: '0 auto', padding: '0 32px',
+            display: 'flex', gap: 10, flexWrap: 'wrap',
           }}>
             {SUGGESTIONS.map((s) => (
               <button key={s} onClick={() => handleSendMessage(s)} style={{
-                padding: '5px 13px', fontSize: '12px',
+                padding: '7px 16px', fontSize: '14px',
                 fontFamily: SF, fontWeight: 400,
                 background: 'transparent',
                 border: '0.5px solid rgba(255,255,255,0.15)',
@@ -350,17 +350,17 @@ export default function UserChat({ onBack }: UserChatProps) {
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
         borderTop: '0.5px solid rgba(255,255,255,0.08)',
         flexShrink: 0, zIndex: 2, position: 'relative',
-        padding: '10px 0 16px',
+        padding: '14px 0 20px',
       }}>
         <div style={{
-          maxWidth: 640, margin: '0 auto', padding: '0 24px',
-          display: 'flex', gap: 10, alignItems: 'center',
+          maxWidth: 780, margin: '0 auto', padding: '0 32px',
+          display: 'flex', gap: 12, alignItems: 'center',
         }}>
           <div style={{
             flex: 1, display: 'flex', alignItems: 'center',
             background: 'transparent',
-            borderRadius: 10, border: '0.5px solid rgba(255,255,255,0.15)',
-            padding: '0 14px',
+            borderRadius: 12, border: '0.5px solid rgba(255,255,255,0.15)',
+            padding: '0 18px',
           }}>
             <input
               value={input}
@@ -368,10 +368,10 @@ export default function UserChat({ onBack }: UserChatProps) {
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Ask your concierge anything…"
               style={{
-                flex: 1, padding: '10px 0', background: 'transparent',
+                flex: 1, padding: '13px 0', background: 'transparent',
                 border: 'none', color: 'var(--text)',
-                fontSize: '14px',
-                fontFamily: 'var(--font-dm-sans), "DM Sans", sans-serif',
+                fontSize: '16px',
+                fontFamily: 'var(--font-outfit), "Outfit", sans-serif',
                 outline: 'none', letterSpacing: '0.01em',
               }}
             />
@@ -379,7 +379,7 @@ export default function UserChat({ onBack }: UserChatProps) {
           <button
             onClick={() => handleSendMessage()}
             style={{
-              width: 36, height: 36, borderRadius: '50%',
+              width: 44, height: 44, borderRadius: '50%',
               background: input.trim() ? 'var(--accent)' : 'rgba(44,44,46,0.85)',
               border: '0.5px solid rgba(255,255,255,0.1)',
               cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -388,7 +388,7 @@ export default function UserChat({ onBack }: UserChatProps) {
             onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.9)' }}
             onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
           >
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <svg width="16" height="16" viewBox="0 0 13 13" fill="none">
               <path d="M6.5 11V2M2 6.5L6.5 2L11 6.5"
                 stroke={input.trim() ? 'var(--bg)' : 'var(--text-dim)'}
                 strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />

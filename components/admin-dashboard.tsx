@@ -149,34 +149,34 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
         backdropFilter: 'blur(40px) saturate(180%)',
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
         borderBottom: '0.5px solid rgba(255,255,255,0.08)',
-        padding: '16px 28px 14px', zIndex: 2,
+        padding: '20px 36px 18px', zIndex: 2,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
           <button onClick={onBack} style={{
             background: 'none', border: 'none', cursor: 'pointer',
-            color: 'var(--accent)', fontSize: '17px', fontFamily: SF,
+            color: 'var(--accent)', fontSize: '19px', fontFamily: SF,
             fontWeight: 400, padding: '4px 0',
-            display: 'flex', alignItems: 'center', gap: 3,
+            display: 'flex', alignItems: 'center', gap: 4,
           }}>
-            <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+            <svg width="13" height="22" viewBox="0 0 12 20" fill="none">
               <path d="M10 2L2 10L10 18" stroke="var(--accent)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             Lobby
           </button>
           <div style={{
-            display: 'flex', alignItems: 'center', gap: 6,
-            fontSize: '12px', color: '#34c759',
+            display: 'flex', alignItems: 'center', gap: 7,
+            fontSize: '13px', color: '#34c759',
             fontFamily: SF, fontWeight: 500,
           }}>
             <span className="pulse-gold" style={{
-              width: 5, height: 5, borderRadius: '50%',
+              width: 6, height: 6, borderRadius: '50%',
               background: '#34c759', display: 'inline-block',
             }} />
             Live
           </div>
         </div>
         <div style={{
-          fontSize: '28px', fontWeight: 700, letterSpacing: '-0.5px',
+          fontSize: '34px', fontWeight: 700, letterSpacing: '-0.5px',
           color: 'var(--text)', fontFamily: SFD, lineHeight: 1,
         }}>
           Staff Portal
@@ -184,32 +184,32 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflow: 'auto', padding: '24px 28px 32px' }}>
+      <div style={{ flex: 1, overflow: 'auto', padding: '28px 36px 40px' }}>
 
         {/* Stat cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 24 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 28 }}>
           {stats.map(({ label, value, sub }) => (
             <div key={label} style={{
               background: 'rgba(28,28,30,0.72)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              borderRadius: 16, padding: '18px 16px',
+              borderRadius: 18, padding: '22px 20px',
               border: '0.5px solid rgba(255,255,255,0.08)',
             }}>
               <div style={{
-                fontSize: '11px', fontWeight: 500,
+                fontSize: '12px', fontWeight: 500,
                 color: 'rgba(235,235,245,0.4)', fontFamily: SF,
-                letterSpacing: '0.03em', marginBottom: 8, textTransform: 'uppercase',
+                letterSpacing: '0.03em', marginBottom: 10, textTransform: 'uppercase',
               }}>
                 {label}
               </div>
               <div style={{
-                fontSize: '30px', fontWeight: 700, color: 'var(--text)',
+                fontSize: '36px', fontWeight: 700, color: 'var(--text)',
                 fontFamily: SFD, letterSpacing: '-1px', lineHeight: 1,
               }}>
                 {value}
               </div>
-              <div style={{ fontSize: '12px', color: 'var(--accent)', marginTop: 8, fontFamily: SF }}>
+              <div style={{ fontSize: '13px', color: 'var(--accent)', marginTop: 10, fontFamily: SF }}>
                 {sub}
               </div>
             </div>
@@ -217,45 +217,45 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
         </div>
 
         {/* Chart + Upload grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 20 }}>
 
           {/* Chart */}
           <div style={{
             background: 'rgba(28,28,30,0.72)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            borderRadius: 20, padding: '24px',
+            borderRadius: 22, padding: '30px',
             border: '0.5px solid rgba(255,255,255,0.08)',
           }}>
             <div style={{
-              fontSize: '11px', fontWeight: 500, letterSpacing: '0.06em',
+              fontSize: '13px', fontWeight: 500, letterSpacing: '0.06em',
               textTransform: 'uppercase', color: 'rgba(235,235,245,0.35)',
-              fontFamily: SF, marginBottom: 4,
+              fontFamily: SF, marginBottom: 5,
             }}>
               Conversation Analytics
             </div>
             <div style={{
-              fontSize: '20px', fontWeight: 700, color: 'var(--text)',
-              fontFamily: SFD, letterSpacing: '-0.4px', marginBottom: 20,
+              fontSize: '24px', fontWeight: 700, color: 'var(--text)',
+              fontFamily: SFD, letterSpacing: '-0.4px', marginBottom: 24,
             }}>
               Query Topics
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               {chartData.map(({ label, count, pct }, i) => (
                 <div key={label}
                   onMouseEnter={() => setHovRow(i)}
                   onMouseLeave={() => setHovRow(null)}
                   style={{ opacity: hovRow !== null && hovRow !== i ? 0.35 : 1, transition: 'opacity 0.2s' }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, alignItems: 'baseline' }}>
-                    <span style={{ fontSize: '13px', color: 'var(--text)', fontFamily: SF, fontWeight: 400 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 7, alignItems: 'baseline' }}>
+                    <span style={{ fontSize: '15px', color: 'var(--text)', fontFamily: SF, fontWeight: 400 }}>
                       {label}
                     </span>
-                    <span style={{ fontSize: '13px', color: 'var(--accent)', fontFamily: SF, fontWeight: 600 }}>
+                    <span style={{ fontSize: '15px', color: 'var(--accent)', fontFamily: SF, fontWeight: 600 }}>
                       {count}
                     </span>
                   </div>
-                  <div style={{ height: 5, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
+                  <div style={{ height: 7, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
                     <div style={{
                       height: '100%',
                       width: barsVis ? `${pct}%` : '0%',
@@ -268,9 +268,9 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
               ))}
             </div>
             <div style={{
-              marginTop: 18, paddingTop: 16,
+              marginTop: 22, paddingTop: 18,
               borderTop: '0.5px solid rgba(255,255,255,0.06)',
-              fontSize: '11px', color: 'rgba(235,235,245,0.25)', fontFamily: SF,
+              fontSize: '12px', color: 'rgba(235,235,245,0.25)', fontFamily: SF,
             }}>
               Real-time via Supabase · hotel_conversation
             </div>
@@ -281,20 +281,20 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
             background: 'rgba(28,28,30,0.72)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            borderRadius: 20, padding: '24px',
+            borderRadius: 22, padding: '30px',
             border: '0.5px solid rgba(255,255,255,0.08)',
             display: 'flex', flexDirection: 'column',
           }}>
             <div style={{
-              fontSize: '11px', fontWeight: 500, letterSpacing: '0.06em',
+              fontSize: '13px', fontWeight: 500, letterSpacing: '0.06em',
               textTransform: 'uppercase', color: 'rgba(235,235,245,0.35)',
-              fontFamily: SF, marginBottom: 4,
+              fontFamily: SF, marginBottom: 5,
             }}>
               Knowledge Base
             </div>
             <div style={{
-              fontSize: '20px', fontWeight: 700, color: 'var(--text)',
-              fontFamily: SFD, letterSpacing: '-0.4px', marginBottom: 16,
+              fontSize: '24px', fontWeight: 700, color: 'var(--text)',
+              fontFamily: SFD, letterSpacing: '-0.4px', marginBottom: 20,
             }}>
               Upload Hotel Info
             </div>
@@ -302,9 +302,9 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
             <label style={{
               flex: 1, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center',
-              padding: '24px 12px', marginBottom: 14,
+              padding: '30px 16px', marginBottom: 16,
               border: `1px dashed ${selectedFile ? 'var(--accent)' : 'rgba(255,255,255,0.1)'}`,
-              borderRadius: 14,
+              borderRadius: 16,
               background: selectedFile ? 'rgba(214,191,136,0.05)' : 'rgba(255,255,255,0.02)',
               cursor: 'pointer', transition: 'all 0.2s', textAlign: 'center',
             }}>
@@ -317,29 +317,29 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
               />
               {selectedFile ? (
                 <>
-                  <svg width="32" height="32" viewBox="0 0 34 34" fill="none" style={{ marginBottom: 10 }}>
+                  <svg width="38" height="38" viewBox="0 0 34 34" fill="none" style={{ marginBottom: 12 }}>
                     <rect x="7" y="2" width="20" height="30" rx="3" stroke="var(--accent)" strokeWidth="1.5" fill="none" />
                     <path d="M7 10h20" stroke="var(--accent)" strokeWidth="0.7" opacity="0.4" />
                     <text x="17" y="23" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fill="var(--accent)" fontWeight="600">PDF</text>
                   </svg>
-                  <div style={{ fontSize: '12px', color: 'var(--text)', fontFamily: SF, fontWeight: 500, wordBreak: 'break-all', lineHeight: 1.4 }}>
+                  <div style={{ fontSize: '14px', color: 'var(--text)', fontFamily: SF, fontWeight: 500, wordBreak: 'break-all', lineHeight: 1.4 }}>
                     {selectedFile.name}
                   </div>
-                  <div style={{ fontSize: '11px', color: 'rgba(235,235,245,0.35)', marginTop: 3, fontFamily: SF }}>
+                  <div style={{ fontSize: '12px', color: 'rgba(235,235,245,0.35)', marginTop: 4, fontFamily: SF }}>
                     {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                   </div>
                 </>
               ) : (
                 <>
-                  <svg width="30" height="28" viewBox="0 0 30 28" fill="none" style={{ marginBottom: 10, opacity: 0.3 }}>
+                  <svg width="36" height="34" viewBox="0 0 30 28" fill="none" style={{ marginBottom: 12, opacity: 0.3 }}>
                     <path d="M15 20V8M9 14L15 8L21 14" stroke="var(--text)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M4 22C2 20 2 16 6 15 6 11 10.5 8 15 9.5 17 6.5 23 7 24 11 27.5 12 28.5 16 26.5 18"
                       stroke="var(--text)" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.5" />
                   </svg>
-                  <div style={{ fontSize: '13px', color: 'rgba(235,235,245,0.45)', fontFamily: SF }}>
+                  <div style={{ fontSize: '15px', color: 'rgba(235,235,245,0.45)', fontFamily: SF }}>
                     Drop PDF here
                   </div>
-                  <div style={{ fontSize: '11px', color: 'rgba(235,235,245,0.25)', marginTop: 3, fontFamily: SF }}>
+                  <div style={{ fontSize: '13px', color: 'rgba(235,235,245,0.25)', marginTop: 4, fontFamily: SF }}>
                     or click to browse · Max 50 MB
                   </div>
                 </>
@@ -348,10 +348,10 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
 
             {/* Progress bar */}
             {(isUploading || uploadDone) && (
-              <div style={{ marginBottom: 12 }}>
+              <div style={{ marginBottom: 14 }}>
                 <div style={{
-                  height: 3, background: 'rgba(255,255,255,0.06)',
-                  borderRadius: 2, overflow: 'hidden', marginBottom: 6,
+                  height: 4, background: 'rgba(255,255,255,0.06)',
+                  borderRadius: 2, overflow: 'hidden', marginBottom: 8,
                 }}>
                   <div style={{
                     height: '100%',
@@ -361,7 +361,7 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
                   }} />
                 </div>
                 <div style={{
-                  fontSize: '12px',
+                  fontSize: '13px',
                   color: uploadDone ? 'var(--accent)' : 'rgba(235,235,245,0.35)',
                   fontFamily: SF,
                 }}>
@@ -372,7 +372,7 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
 
             {/* Upload error */}
             {uploadError && (
-              <div style={{ fontSize: '12px', color: '#ff453a', marginBottom: 10, fontFamily: SF }}>
+              <div style={{ fontSize: '13px', color: '#ff453a', marginBottom: 12, fontFamily: SF }}>
                 {uploadError}
               </div>
             )}
@@ -381,11 +381,11 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
               onClick={handleUpload}
               disabled={!selectedFile || isUploading}
               style={{
-                padding: '13px',
+                padding: '16px',
                 background: !selectedFile || isUploading ? 'rgba(44,44,46,0.6)' : 'var(--accent)',
-                border: 'none', borderRadius: 12,
+                border: 'none', borderRadius: 14,
                 color: !selectedFile || isUploading ? 'rgba(235,235,245,0.25)' : 'var(--bg)',
-                fontSize: '14px', fontWeight: 600, fontFamily: SF,
+                fontSize: '16px', fontWeight: 600, fontFamily: SF,
                 cursor: !selectedFile || isUploading ? 'default' : 'pointer',
                 transition: 'all 0.18s', letterSpacing: '-0.1px',
               }}
