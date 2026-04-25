@@ -29,11 +29,12 @@ The platform employs a modern microservices architecture orchestrated by n8n, en
 
 | **Component** | **Technology** | **Role** |
 | :--- | :--- | :--- |
-| **Frontend (UI)** | **React** (TypeScript) & **Tailwind CSS** | Admin dashboard, real-time chat interface, and data visualization. |
+| **Frontend (UI)** | **Next.js 16** & **React 19** (TypeScript), **Tailwind CSS**, **Radix UI / shadcn/ui** | Admin dashboard, real-time chat interface, and data visualization. |
 | **Backend / Orchestration** | **Node.js** & **n8n** (Automation) | Manages all API calls, RAG logic, external webhooks, and complex workflow steps like fallback emails and error handling. |
 | **Database** | **Supabase** (PostgreSQL) | Stores real-time chat analytics, user data (for fallback), and conversation history for the dashboard. |
 | **AI Agents** | **Gemini 2.5 Flash** | Powers the core RAG Chatbot, **Conversation Analysis Agent**, and other LLM tasks. |
-| **Development** | **v0.dev** (Vercel) & **Cursor AI** (Grok-1) | Used for initial framework generation and iterative code building/refinement. |
+| **Framework & Prototyping** | **v0.dev** (Vercel) & **Claude Design** (Anthropic) | Used for initial UI framework generation and visual prototyping. |
+| **Development** | **Claude Code** (Anthropic) | Used for iterative code building, refinement, and context-aware development. |
 
 ---
 ## ⚙️ Key Features
@@ -77,7 +78,7 @@ This robust technical monitoring loop is configured globally within n8n:
 ## 💻 Tech & Methodology Notes
 
 * **Model Selection:** **Gemini 2.5 Flash** was chosen for its high performance, low latency, and advanced reasoning capabilities, making it ideal for the critical RAG and structured data extraction tasks.
-* **Cursor AI/Grok:** The project leveraged **Cursor AI** for rapid development and context-aware coding, significantly accelerating the build process.
+* **Claude Code:** The project leveraged **Claude Code** (Anthropic) for rapid development and context-aware coding, significantly accelerating the build process.
 * **Realtime:** The use of **Supabase Realtime** on the Admin Dashboard provides instant feedback on chatbot activity, fulfilling the requirement for real-time analytics.
 
 ---

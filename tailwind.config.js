@@ -17,8 +17,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        'montserrat': ['var(--font-montserrat)', 'sans-serif'],
-        'playfair-display': ['var(--font-playfair-display)', 'serif'],
+        'dm-sans': ['var(--font-dm-sans)', 'sans-serif'],
+        'playfair': ['var(--font-playfair)', 'serif'],
+        'cormorant': ['var(--font-cormorant)', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -43,8 +44,8 @@ module.exports = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--tw-accent))",
+          foreground: "hsl(var(--tw-accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

@@ -1,9 +1,15 @@
 {
   "pages": {},
   "app": {
-    "[project]/cincinnati-hotel/app/page": [
-      "static/media/e8f2fbee2754df70-s.p.9b7a96b4.woff2",
-      "static/media/2a65768255d6b625-s.p.d19752fb.woff2"
+    "[project]/app/page": [
+      "static/media/70e3db2de7f94926-s.p.347f98aa.woff2",
+      "static/media/2a65768255d6b625-s.p.d19752fb.woff2",
+      "static/media/8bd76523131fa0fc-s.p.eb17b6b9.woff2",
+      "static/media/01e4147cff8141ee-s.p.7787e134.woff2",
+      "static/media/4ee71d90e0f663bd-s.p.476c4761.woff2",
+      "static/media/e4505858a30c79c2-s.p.0f58a291.woff2",
+      "static/media/cc014fcb166cf364-s.p.e32417d2.woff2",
+      "static/media/5c285b27cdda1fe8-s.p.a62025f2.woff2"
     ]
   },
   "appUsingSizeAdjust": true,
